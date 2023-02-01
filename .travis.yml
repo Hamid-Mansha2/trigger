@@ -1,0 +1,37 @@
+---
+language: objective-c
+os:
+- osx
+osx_image:
+- xcode14
+rvm:
+- 2.7.6
+cache:
+  bundler: true
+notifications:
+  email:
+  - recipients:
+    - pavol.galovic@onqsolutions.com
+    - nitins3@chetu.com
+    on_success: always
+    on_failure: always
+
+before_install:
+- gem install --no-document bundler -v 1.17.3
+- bundle config GITHUB__COM $GITHUB_ACCOUNT_NAME:$GITHUB_ACCOUNT_PAT
+- echo -e "machine github.com\n  login c751112d75b7aad0b38238d79278bf3d33f807c6"
+- brew update
+- brew install git-lfs
+- git lfs install
+- wget https://www.apple.com/certificateauthority/AppleWWDRCAG3.cer
+- sudo security import AppleWWDRCAG3.cer -k ~/Library/Keychains/login.keychain
+- sudo security import AppleWWDRCAG3.cer -k /Library/Keychains/System.keychain
+install:
+- bundle install
+before_script:
+- git lfs pull
+script:
+- "./fastlane/travis.sh"
+after_failure:
+- cat /Users/travis/build/june20com/iOS/build/Converge\ Debug/Converge\ Debug-Converge\
+  Debug.log
