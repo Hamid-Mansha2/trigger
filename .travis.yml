@@ -15,7 +15,8 @@ notifications:
     - nitins3@chetu.com
     on_success: always
     on_failure: always
-
+install:
+- bundle install
 before_install:
 - gem install --no-document bundler -v 1.17.3
 - bundle config GITHUB__COM $GITHUB_ACCOUNT_NAME:$GITHUB_ACCOUNT_PAT
@@ -28,8 +29,6 @@ before_install:
 - sudo security import AppleWWDRCAG3.cer -k /Library/Keychains/System.keychain
 before_script:
 - git lfs pull
-install:
-- bundle install
 script:
 - "./fastlane/travis.sh"
 after_failure:
