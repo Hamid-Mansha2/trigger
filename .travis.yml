@@ -28,6 +28,8 @@ before_install:
 - sudo security import AppleWWDRCAG3.cer -k /Library/Keychains/System.keychain
 before_script:
 - git lfs pull
+install:
+- bundle install
 script:
 - "./fastlane/travis.sh"
 after_failure:
