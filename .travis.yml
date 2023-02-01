@@ -16,7 +16,7 @@ notifications:
     on_success: always
     on_failure: always
 install:
-- bundle install
+- pod install
 before_install:
 - gem install --no-document bundler -v 1.17.3
 - bundle config GITHUB__COM $GITHUB_ACCOUNT_NAME:$GITHUB_ACCOUNT_PAT
