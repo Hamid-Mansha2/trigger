@@ -15,8 +15,10 @@ notifications:
     - nitins3@chetu.com
     on_success: always
     on_failure: always
+gemfile:
+- string
 install:
-- pod install
+- bundle install
 before_install:
 - gem install --no-document bundler -v 1.17.3
 - bundle config GITHUB__COM $GITHUB_ACCOUNT_NAME:$GITHUB_ACCOUNT_PAT
